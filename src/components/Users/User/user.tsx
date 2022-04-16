@@ -5,8 +5,8 @@ import UnfollowButton from "./Buttons/unFollowButton"
 import classes from "./../users.module.css"
 
 type PropsType = {
-  followUser: (userId: number) => void
-  unFollowUser: (userId: number) => void
+  postFollow: (userId: number) => void
+  deleteFollow: (userId: number) => void
   isFollowingInProgress: Array<number> 
   isFetching: boolean
   photoSmall?: string | null
@@ -20,12 +20,12 @@ type PropsType = {
 const User = (props: PropsType) => {
   let onFollowClick = (e: any) => {
     let userId = e.target.id;
-    props.followUser(userId);
+    props.postFollow(userId);
   };
 
   let onUnFollowClick = (e: any) => {
     let userId = e.target.id;
-    props.unFollowUser(userId);
+    props.deleteFollow(userId);
   };
   if (props.isFetching) {
     return <Preloader />;

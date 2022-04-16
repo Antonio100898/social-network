@@ -6,8 +6,8 @@ import { AppStateType } from "../../redux/redux-store";
 import { getCurrentPage, getIsFetching, getIsFollowingInProgress, getPageSize, getTotalUsersCount, getUsersData } from "../../redux/Selectors/users-selectors";
 import {
   getUsers,
-  followUser,
-  unFollowUser,
+  postFollow,
+  deleteFollow,
   UserType,
 } from "../../redux/users-reducer";
 import { withRouter } from "../hoc/withRouter";
@@ -34,8 +34,8 @@ type MapStatePropsType = {
 type MapDispatchPropsType = {
   setPathName: (pathname: string) => void
   getUsers: (pageNumber: number, pageSize: number) => void
-  followUser: (id: number) => void
-  unFollowUser: (id: number) => void
+  postFollow: (id: number) => void
+  deleteFollow: (id: number) => void
 }
 
 
@@ -58,8 +58,8 @@ class UsersAPIComponent extends React.Component<PropsType> {
     return (
       <>
         <Users
-          followUser={this.props.followUser}
-          unFollowUser={this.props.unFollowUser}
+          postFollow={this.props.postFollow}
+          deleteFollow={this.props.deleteFollow}
           isFollowingInProgress={this.props.isFollowingInProgress}
           totalItemsCount={this.props.totalUsersCount}
           pageSize={this.props.pageSize}
@@ -86,8 +86,8 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => ({
 export default compose(
   connect<MapStatePropsType, MapDispatchPropsType, WithRouterPropsType, AppStateType>(mapStateToProps, {
     getUsers,
-    followUser,
-    unFollowUser,
+    postFollow,
+    deleteFollow,
     setPathName
   }),
   withRouter

@@ -88,8 +88,8 @@ const userSlice = createSlice({
     },
     followUser(state, action: PayloadAction<number>) {
       state.usersData = state.usersData.map((u) => {
-        if (u.id === action.payload) {
-          u.followed = true
+        if (u.id == action.payload) {
+          return {...u, followed: true}
         }
         return u
       })
@@ -97,7 +97,7 @@ const userSlice = createSlice({
     unFollowUser(state, action: PayloadAction<number>) {
       state.usersData = state.usersData.map((u) => {
         if (u.id == action.payload) {
-          u.followed = false
+          return {...u, followed: false}
         }
         return u
       })
@@ -105,14 +105,17 @@ const userSlice = createSlice({
     setIsFetching(state, action: PayloadAction<boolean>) {
       state.isFetching = action.payload
     },
-    FollowingInProgress(state, action: PayloadAction<{ userId: number, inProgress: boolean }>) {
+    followingInProgress(state, action: PayloadAction<FollowingProgress>) {
       state.isFollowingInProgress = action.payload.inProgress
         ? [...state.isFollowingInProgress, action.payload.userId]
         : [state.isFollowingInProgress.filter((id) => id != action.payload.userId)]
     }
   }
 })
-
+type FollowingProgress = {
+  userId: number
+  inProgress: boolean
+}
 // ActionCreators:
 // export const setTotalUsersCount = (totalUsersCount: number): SetTotalUsersCountActionType => ({
 //   type: SET_TOTAL_USERS,
@@ -143,15 +146,15 @@ const userSlice = createSlice({
 //   inProgress,
 // });
 
-// const followUnfollowFlow = async (dispatch: Dispatch<ActionsTypes>, userId: number, apiMethod: any, actionCreator: (userId: number) => ActionsTypes) => {
-//   dispatch(FollowingInProgress(userId, true));
-//   const response = await apiMethod(userId);
-//   if (response.data.resultCode === 0) {
-//     dispatch(actionCreator(userId));
-//   }
-//   dispatch(FollowingInProgress(userId, false));
-// };
-export const {setIsFetching, setCurrentPage, setUsers, setTotalUsersCount, followUser, unFollowUser} = userSlice.actions
+ const followUnfollowFlow = async (dispatch: Dispatch, userId: number, apiMethod: any, actionCreator: any) => {
+   dispatch(followingInProgress({userId: userId, inProgress: true}));
+   const response = await apiMethod(userId);
+   if (response.data.resultCode === 0) {
+     dispatch(actionCreator(userId));
+   }
+   dispatch(followingInProgress({userId: userId, inProgress: false}));
+ };
+export const {followingInProgress, setIsFetching, setCurrentPage, setUsers, setTotalUsersCount, followUser, unFollowUser} = userSlice.actions
 
 //Thunk:
 export const getUsers = (currentPage: number, pageSize: number) => async (dispatch: Dispatch) => {
@@ -163,15 +166,15 @@ export const getUsers = (currentPage: number, pageSize: number) => async (dispat
   dispatch(setTotalUsersCount(response.totalCount));
 };
 
-// export const postFollow = (userId: number): ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes> => async (dispatch: any) => {
-//   let actionCreator = followUser;
-//   let apiMethod = userApi.followUser.bind(userApi);
-//   followUnfollowFlow(dispatch, userId, apiMethod, actionCreator);
-// };
-// export const deleteFollow = (userId: number): ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes> => async (dispatch: any) => {
-//   let actionCreator = unFollowUser;
-//   let apiMethod = userApi.unfollowUser.bind(userApi);
-//   followUnfollowFlow(dispatch, userId, apiMethod, actionCreator);
-// };
+ export const postFollow = (userId: number) => async (dispatch: any) => {
+  let actionCreator = followUser;
+   let apiMethod = userApi.followUser.bind(userApi);
+   followUnfollowFlow(dispatch, userId, apiMethod, actionCreator);
+ };
+ export const deleteFollow = (userId: number) => async (dispatch: any) => {
+   let actionCreator = unFollowUser;
+   let apiMethod = userApi.unfollowUser.bind(userApi);
+   followUnfollowFlow(dispatch, userId, apiMethod, actionCreator);
+ };
 
 export default userSlice.reducer;
