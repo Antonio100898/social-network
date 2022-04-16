@@ -1,0 +1,53 @@
+.form {
+  width: max-content;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.form_wrapper {
+  display: flex;
+  justify-content: center;
+}
+.buttons {
+  padding: 5px;
+  cursor: pointer;
+}
+.input {
+  padding: 5px;
+  line-height: 20px;
+  width: 300px;
+}
+.errors {
+  color: red;
+}
+.field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 500px;
+  justify-content: space-between;
+}
+.messageArea {
+  resize: none;
+  padding: 5px;
+  width: 300px;
+}
+.error {
+  border: red solid 1px;
+}
+.btn_add_post {
+  background-color: bisque;
+  width: 100px;
+  height: 30px;
+  font-size: 15px;
+  border: black 0.5px solid;
+  float: right;
+}
+.textarea {
+  font-size: 20px;
+  padding: 20px;
+  width: 400px;
+  resize: none;
+}

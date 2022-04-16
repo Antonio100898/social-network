@@ -1,0 +1,16 @@
+.posts {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  justify-content: space-between;
+  
+  margin: 30px 0 0 5px;
+  height: 500px;
+}
+.posts_area {
+  padding: 10px;
+  background-color: rgb(201, 219, 230);
+}
+.post_adding {
+  width: 600px;
+}

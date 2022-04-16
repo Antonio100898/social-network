@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.app_wrapper {
+  box-sizing: border-box;
+  width: 1400px;
+  height: max-content;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+  grid-template-rows: 80px 1000px;
+}
+.app_content {
+  margin-top: 5px;
+  height: max-content;
+  background-color: rgb(238, 248, 255);
+  grid-column: 2;
+  grid-row: 2;
+  padding: 10px;
+  border: black 1px solid;
+  border-left: 0;
+}

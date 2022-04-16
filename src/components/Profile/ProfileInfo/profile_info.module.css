@@ -1,0 +1,32 @@
+.profile_picture {
+  width: 30%;
+}
+.profile_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 200px;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 10px;
+  border-bottom: 1px black solid;
+  
+}
+.item {
+  background-color: rgb(170, 126, 211);
+  height: 20px;
+  padding: 10px;
+  
+}
+.item.name {
+  width: 250px;
+}
+.item.age {
+  width: 300px;
+}
+.item.city {
+  width: 350px;
+}
+.item.interests {
+  width: 400px;
+}

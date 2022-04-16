@@ -1,0 +1,9 @@
+.post {
+    border-bottom: 0.5px solid grey;
+    background-color: rgb(139, 255, 255);
+    padding: 10px;
+}
+.likes {
+    margin-top: 10px;
+}
+

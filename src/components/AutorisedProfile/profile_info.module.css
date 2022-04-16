@@ -1,0 +1,38 @@
+.profile_picture {
+  height: 300px;
+}
+.profile_content {
+  display: flex;
+  flex-direction: row;
+  width: max-content;
+  height: 500px;
+}
+.profile_info {
+  width: max-content;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: 20px;
+  padding: 10px;
+  left: 400px;
+}
+.item {
+  height: 20px;
+  padding: 10px;
+}
+.status{
+  font-size: 30px;
+  margin-top: 80px;
+}
+.status_main {
+  font-weight: bold;
+}
+.status_value {
+  background-color: rgb(206, 237, 250);
+  padding: 5px;
+}
+.status_input {
+  padding: 5px;
+  width: 500px;
+}

@@ -1,0 +1,7 @@
+.button{
+    cursor: pointer;
+    padding: 5px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 15px;
+    margin-left: 5px;
+}

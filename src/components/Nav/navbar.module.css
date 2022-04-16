@@ -1,0 +1,37 @@
+.nav_bar {
+  height: max-content;
+  grid-area: nav;
+  grid-column: 1;
+  grid-row: 2;
+  padding: 10px;
+}
+
+.link:hover {
+  border: 0.5px solid white;
+  background-color: rgb(74, 110, 146);
+}
+.nav_links {
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgb(86, 128, 170);
+  border-radius: 20px;
+  border: 0.5px black solid;
+}
+.link {
+  text-decoration: 0;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: 400;
+  color: white;
+  border: transparent solid 1px;
+  background-color: transparent;
+  padding: 10px;
+}
+.selected{
+  border: 0.5px solid white;
+  background-color: rgb(74, 110, 146);
+}
+
